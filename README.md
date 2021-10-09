@@ -1,12 +1,14 @@
-#  Debian bullseye VANUW - vagrant + ansible + nginx + uwsgi + web2py 
+#  Debian bullseye VANUW - vagrant + ansible + nginx + uwsgi + web2py
+
 Creates a debian bullseye virtual web server
+
 Requires:
  
- virtualbox
+				virtualbox
  
- vagrant
+				vagrant
  
- ansible
+				ansible
  
 This package contains the configuration files to install a virtual server: 
 
