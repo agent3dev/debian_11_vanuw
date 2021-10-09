@@ -13,4 +13,5 @@ This package contains the configuration files to install a virtual server:
 Usage:
   Clone this repo, cd in the folder and run:
     vagrant up
+    
     vagrant provision
