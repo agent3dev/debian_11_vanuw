@@ -5,25 +5,21 @@ Creates a debian bullseye virtual web server
 Requires:
  
 	virtualbox
- 
-	vagrant
- 
-	ansible
+ 	vagrant
+ 	ansible
  
 This package contains the configuration files to install a virtual server: 
 
 	1 - Vagrant creates a debian bullseye virtual machine
- 
-	2 - Ansible installs nginx + uwsgi + web2py and the required python packages and copies configuration files for a basic web server
- 
-	3 - Finally Vagrant creates a self-signed certificate, reload daemons and starts the web server
+ 	2 - Ansible installs nginx + uwsgi + web2py and the required python packages
+	3 - Ansible copies configuration files for a basic web server
+ 	4 - Finally Vagrant creates a self-signed certificate, reload daemons and starts the web server
 
 Usage:
   Clone this repo, cd in the folder and run:
     
 	vagrant up --provider virtualbox
-    
-	vagrant provision
+ 	vagrant provision
  
  You can access the webserver in the folowing URL:
  
