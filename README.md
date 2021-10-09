@@ -1,2 +1,2 @@
-# debian 11 vanuw
+# debian_bullseye_vagrant_ansible_nginx_uwsgi_web2py
 debian bullseye vagrant ansible nginx uwsgi web2py

@@ -1,0 +1,107 @@
+---
+- name: Playbook to configure nginx + uwsgi + web2py
+  hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  become: yes
+  become_user: "root"
+  become_method: "sudo"
+    - name: Delete nginx default site
+      file:
+        state: absent
+        path: /etc/nginx/sites-enabled/default
+
+    - name: Copy nginx config file
+      copy:
+        src: config_files/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        owner: www-data
+        group: www-data
+        mode: '0644'
+        
+    - name: Copy nginx web2py config file
+      copy:
+        src: config/web2py.conf
+        dest: /etc/nginx/sites-available/web2py.conf
+        owner: www-data
+        group: www-data
+        mode: '0644'
+        
+    - name: Enable web2py site by symbolic link
+      file:
+        src: config_files/web2py.conf
+        dest: /etc/nginx/sites-enabled/web2py.conf
+        state: link
+
+    - name: Create uwsgi socket
+      file:
+        path: /tmp/web2py.socket
+        state: touch
+        owner: www-data
+        group: www-data
+        mode: 0775
+
+    - name: Create uwsgi log directory
+      file:
+        path: /var/log/uwsgi/
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: 0775
+
+    - name: Create uwsgi config directory
+      file:
+        path: /etc/uwsgi/
+        state: directory
+    
+    - name: Copy uwsgi web2py config file
+      copy:
+        src: config/web2py.ini
+        dest: /etc/uwsgi/web2py.ini
+
+    - name: Create uwsgi service
+      copy:
+        src: config/emperor.uwsgi.service
+        dest: /etc/systemd/system/emperor.uwsgi.service
+
+    - name: Create web2py password
+      copy:
+        src: config/parameters_443.py
+        dest: /srv/web2py/parameters_443.py
+        owner: www-data
+        group: www-data
+        mode: '0644'
+        
+    - name: Create web2py handler 
+      copy:
+        src: /srv/web2py/handlers/wsgihandler.py
+        dest: /srv/web2py/wsgihandler.py
+        remote_src: true
+        
+    - name: Enable service uwsgi and ensure it is not masked
+      systemd:
+        name: emperor.uwsgi.service
+        enabled: yes
+        masked: no
+
+    - name: Copy self sign certificate script
+      copy:
+        src: config/self_sign.sh
+        dest: /srv/ssl/self_sign.sh
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Enable service nginx and ensure it is not masked
+      systemd:
+        name: nginx
+        enabled: yes
+        masked: no
+
+    - name: Set timezone to America/Mexico_City
+      timezone:
+        name: America/Mexico_City
+
+    
+
+
