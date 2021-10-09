@@ -1,4 +1,5 @@
-#  Debian bullseye VANUW - vagrant + ansible + nginx + uwsgi + web2py
+#  Debian bullseye VANUW
+Vagrant + Ansible + Nginx + Uwsgi + Web2py
 
 Creates a debian bullseye virtual web server
 
