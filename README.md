@@ -4,11 +4,11 @@ Creates a debian bullseye virtual web server
 
 Requires:
  
-				virtualbox
+	virtualbox
  
-				vagrant
+	vagrant
  
-				ansible
+	ansible
  
 This package contains the configuration files to install a virtual server: 
 
