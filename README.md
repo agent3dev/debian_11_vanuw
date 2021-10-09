@@ -5,17 +5,12 @@ Requires:
  vagrant
  ansible
 
-This package contains the configuration files to do:
- -- Vagrant
-      Create a debian bullseye virtual machine
-      Create a self-signed certificate
- -- Ansible
-      Install nginx + uwsgi + web2py and required python packages
-      Copy example configuration files for the web server
- -- Vagrant
-      Create a self-signed certificate   
-      Reload daemons and start the web server
+This package contains the configuration files to install a virtual server: 
+ 1 - Vagrant creates a debian bullseye virtual machine
+ 2 - Ansible installs nginx + uwsgi + web2py and the required python packages and copies configuration files for a basic web server
+ 3 - Finally Vagrant creates a self-signed certificate, reload daemons and starts the web server
 
 Usage:
   Clone this repo, cd in the folder and run:
     vagrant up
+    vagrant provision
