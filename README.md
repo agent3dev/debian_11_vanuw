@@ -1,4 +1,10 @@
-# debian_bullseye_vagrant_ansible_nginx_uwsgi_web2py
+#  debian_11_vanuw
+Creates a debian bullseye + nginx + uwsgi + web2py
+Requires:
+ virtualbox
+ vagrant
+ ansible
+
 This package contains the configuration files to do:
  -- Vagrant
       Create a debian bullseye virtual machine
