@@ -1,5 +1,5 @@
-#  debian_11_vanuw
-Creates a debian bullseye + nginx + uwsgi + web2py virtual web server
+#  Debian bullseye VANUW - vagrant + ansible + nginx + uwsgi + web2py 
+Creates a debian bullseye virtual web server
 Requires:
  
  virtualbox
