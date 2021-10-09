@@ -6,6 +6,7 @@
   become: yes
   become_user: "root"
   become_method: "sudo"
+  tasks:
     - name: Delete nginx default site
       file:
         state: absent
@@ -13,7 +14,7 @@
 
     - name: Copy nginx config file
       copy:
-        src: config_files/nginx.conf
+        src: config/nginx.conf
         dest: /etc/nginx/nginx.conf
         owner: www-data
         group: www-data
@@ -29,7 +30,7 @@
         
     - name: Enable web2py site by symbolic link
       file:
-        src: config_files/web2py.conf
+        src: /etc/nginx/sites-available/web2py.conf
         dest: /etc/nginx/sites-enabled/web2py.conf
         state: link
 
@@ -83,6 +84,14 @@
         name: emperor.uwsgi.service
         enabled: yes
         masked: no
+
+    - name: Create ssl directory
+      file:
+        path: /srv/ssl/
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: 0775
 
     - name: Copy self sign certificate script
       copy:
